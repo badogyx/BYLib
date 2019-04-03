@@ -16,11 +16,13 @@
 #ifndef SMARTPOINTER_H
 #define SMARTPOINTER_H
 
+#include "Object.h"
+
 namespace BYLib
 {
 
 template < typename T >
-class SmartPointer
+class SmartPointer : public Object
 {
     T* m_pointer;
 

@@ -11,12 +11,14 @@
 #ifndef EXCEPTION_H
 #define EXCEPTION_H
 
+#include "Object.h"
+
 #define THROW_EXCEPTION(e, m) (throw e(m, __FILE__, __LINE__));
 
 namespace BYLib
 {
 
-class Exception
+class Exception : public Object
 {
 protected:
     char* m_message;
@@ -105,16 +107,16 @@ public:
     }
 };
 
-class InvaildParameterException : public Exception
+class InvaildOperationException : public Exception
 {
 public:
-    InvaildParameterException() : Exception(0) {}
-    InvaildParameterException(const char* message) : Exception(message) {}
-    InvaildParameterException(const char* file, int line) : Exception(file, line) {}
-    InvaildParameterException(const char* message, const char* file, int line) : Exception(message, file, line) {}
+    InvaildOperationException() : Exception(0) {}
+    InvaildOperationException(const char* message) : Exception(message) {}
+    InvaildOperationException(const char* file, int line) : Exception(file, line) {}
+    InvaildOperationException(const char* message, const char* file, int line) : Exception(message, file, line) {}
 
-    InvaildParameterException(const InvaildParameterException& e) : Exception(e) {}
-    InvaildParameterException& operator = (const InvaildParameterException& e)
+    InvaildOperationException(const InvaildOperationException& e) : Exception(e) {}
+    InvaildOperationException& operator = (const InvaildOperationException& e)
     {
         Exception::operator =(e);
 
